@@ -1,26 +1,30 @@
 <!--  -->
 <template>
-  <div class="footer_guide">
-    <a href="javascript:;" class="guide_item" :class="{on: '/msite' === $route.path}" @click="goTo('/msite')">
+  <div class="footer_guide border-1px">
+    <a href="javascript:;" class="guide_item" :class="{on:isCurrent('/msite')}" @click="goTo('/msite')">
       <span class="item_icon">
         <i class="iconfont icon-waimai"></i>
       </span>
       <span>外卖</span>
     </a>
-    <a href="javascript:;" class="guide_item" :class="{on: '/search' === $route.path}" @click="goTo('/search')">
+    <a href="javascript:;" class="guide_item" :class="{on:isCurrent('/search')}" @click="goTo('/search')">
       <span class="item_icon">
         <i class="iconfont icon-search"></i>
       </span>
       <span>搜索</span>
     </a>
-    <a href="javascript:;" class="guide_item" :class="{on: '/order' === $route.path}" @click="goTo('/order')">
-      <span class="item_icon"><i class="iconfont icon-dingdan"></i></span>
+    <a href="javascript:;" class="guide_item" :class="{on:isCurrent('/order')}" @click="goTo('/order')">
+      <span class="item_icon">
+        <i class="iconfont icon-dingdan"></i>
+      </span>
       <span>订单</span>
     </a>
-    <a href="javascript:;" class="guide_item" :class="{on: '/profile' === $route.path}" @click="goTo('/profile')">
-      <span class="item_icon"><i class="iconfont icon-geren"></i></span>
+    <a href="javascript:;" class="guide_item" :class="{on:isCurrent('/profile')}" @click="goTo('/profile')">
+      <span class="item_icon">
+        <i class="iconfont icon-geren"></i>
+      </span>
       <span>我的</span>
-    </a>
+    </a> 
   </div>
 </template>
 
@@ -29,6 +33,9 @@ export default {
   methods: {
     goTo(path) {
       this.$router.replace(path);
+    },
+    isCurrent(path) {
+      return this.$route.path === path;
     }
   }
 };
@@ -37,7 +44,7 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .footer_guide {
-  // 顶部有白色的边框
+  /* 顶部有白色的边框 */
   top-border-1px(#e4e4e4);
   position: fixed;
   z-index: 100;

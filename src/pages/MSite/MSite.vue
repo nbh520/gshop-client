@@ -1,44 +1,49 @@
 <!--  -->
 <template>
   <section class="msite">
-    <!-- 首页头部title -->
-    <!-- 使用 :title 来给头部组件传递数据 -->
-    <HeaderTop :title="address.name">
-      <!-- 要使用slot="left"指定插入的插槽位置 -->
-      <router-link class="header_search" slot="left" to="/search">
+    <HeaderTop title="芝罘区鲁东大学北区(青年南路)">
+      <span class="header_search" slot="left">
         <i class="iconfont icon-sousuo"></i>
-      </router-link>
-      <router-link class="header_login" slot="right" :to="userInfo._id ? '/userinfo': '/login'">
-        <span class="header_login_text" v-if="!userInfo._id">
+      </span>
+      <span class="header_login" slot="right">
+        <span class="header_login_text">
           登录|注册
         </span>
-        <span class="header_login_text" v-else>
-          <i class="iconfont icon-yonghuming"></i>
-        </span>
-      </router-link>
+      </span>
     </HeaderTop>
-    <!--首页导航轮播图-->
+    <!-- 首页导航轮播 -->
     <nav class="msite_nav">
-      <!-- swiper的容器div -->
-      <div class="swiper-container" v-if="categorys.length">
-        <!-- swiper的包裹层div -->
+      <div class="swiper-container">
         <div class="swiper-wrapper">
-          <!-- swiper的轮播div -->
-          <div class="swiper-slide" v-for="(pages,index) in categorysArr" :key="index">
-            <a href="javascript:" class="link_to_food" v-for="(data,index) in pages" :key="index">
-              <div class="food_container">
-                <img :src="baseImageUrl+data.image_url">
+          <div class="swiper-slide">
+            <a href="javascript:;" class="link_to_food">
+              <div class="foot_container">
+                <img src="./images/nav/1.jpg">
               </div>
-              <span>{{data.title}}</span>
+              <span>甜品饮品</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="./images/nav/2.jpg">
+              </div>
+              <span>商超便利</span>
             </a>
           </div>
+          <div class="swiper-slide">
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="./images/nav/1.jpg">
+              </div>
+              <span>甜品饮品</span>
+            </a>
+            <!--同样省略-->
+          </div>
         </div>
-        <!-- swiper轮播图圆点 -->
-        <div class="swiper-pagination"></div>
+          <!-- 轮播图页码 -->
+         <div class="swiper-pagination"></div>
       </div>
-      <img src="./images/msite_back.svg" alt="back" v-else>
     </nav>
-    <!--首页附近商家列表-->
+     <!--首页附近商家列表-->
     <div class="msite_shop_list">
       <div class="shop_header">
         <i class="iconfont icon-xuanxiang"></i>
@@ -46,14 +51,27 @@
       </div>
       <ShopList></ShopList>
     </div>
-    </section>
+  </section>
 </template>
 
 <script>
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
+import ShopList from "../../components/ShopList/ShopList.vue";
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
 export default {
+  mounted(){
+    new Swiper('.swiper-container', {
+      autoplay: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    })
+  },
   components: {
-    HeaderTop
+    HeaderTop,
+    ShopList
   }
 };
 </script>
