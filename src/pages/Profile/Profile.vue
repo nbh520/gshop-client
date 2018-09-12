@@ -3,11 +3,8 @@
 <template>
   <div>
     <section class="profile">
-      <header class="header">
-        <a  class="header_title">
-          <span class="header_title_text">我的</span>
-        </a>
-      </header>
+      <HeaderTop title="我的"></HeaderTop>
+
       <section class="profile-number">
         <router-link to="/Login" class="profile-link">
           <div class="profile_image">
@@ -100,9 +97,10 @@
 </template>
 
 <script>
+import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
 export default {
-  data() {
-    return {};
+  components: {
+    HeaderTop
   }
 };
 </script>

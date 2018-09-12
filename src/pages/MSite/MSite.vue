@@ -57,17 +57,19 @@
 <script>
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
 import ShopList from "../../components/ShopList/ShopList.vue";
-import Swiper from 'swiper'
-import 'swiper/dist/css/swiper.min.css'
+import Swiper from "swiper";
+import "swiper/dist/css/swiper.min.css";
 export default {
-  mounted(){
-    new Swiper('.swiper-container', {
+  mounted() {
+    new Swiper(".swiper-container", {
+      loop: true,
       autoplay: true,
+      //分页器
       pagination: {
-        el: '.swiper-pagination',
+        el: ".swiper-pagination",
         clickable: true
       }
-    })
+    });
   },
   components: {
     HeaderTop,
