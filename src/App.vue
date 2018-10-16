@@ -9,7 +9,12 @@
 
 <script>
 import FooterGuide from "./components/FooterGuide/FooterGuide.vue";
+import { reqCategorys } from "./api";
 export default {
+  async mounted() {
+    const result = await reqCategorys();
+    console.log(result);
+  },
   components: {
     FooterGuide
   }
