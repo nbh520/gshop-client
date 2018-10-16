@@ -1,13 +1,13 @@
 <!--  -->
 <template>
   <section class="msite">
-    <HeaderTop title="芝罘区鲁东大学北区(青年南路)">
+    <HeaderTop :title="this.city">
       <span class="header_search" slot="left">
         <i class="iconfont icon-sousuo"></i>
       </span>
       <span class="header_login" slot="right">
         <span class="header_login_text">
-          登录|注册
+          <router-link to="/Login" class="profile-link">登录|注册</router-link>
         </span>
       </span>
     </HeaderTop>
@@ -60,6 +60,11 @@ import ShopList from "../../components/ShopList/ShopList.vue";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
 export default {
+  data() {
+    return {
+      city: "武汉市"
+    };
+  },
   mounted() {
     new Swiper(".swiper-container", {
       loop: true,
