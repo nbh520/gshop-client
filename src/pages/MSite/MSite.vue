@@ -58,12 +58,18 @@
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
 import ShopList from "../../components/ShopList/ShopList.vue";
 import Swiper from "swiper";
+import axios from "axios";
 import "swiper/dist/css/swiper.min.css";
 export default {
   data() {
     return {
       city: "武汉市"
     };
+  },
+  created() {
+    axios.get("https://elm.cangdu.org/v1/cities?type=guess").then(response => {
+      // resolve(response.data);
+    });
   },
   mounted() {
     new Swiper(".swiper-container", {
