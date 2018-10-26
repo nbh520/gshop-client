@@ -29,9 +29,13 @@ export default {
     commit
   }) {
     const result = await reqCategorys()
-    commit(RECEIVE_CATEGORYS, {
-      reqCategorys: result.data
-    })
+    console.log(result)
+    if (result.code === 0) {
+      const categorys = result.data
+      commit(RECEIVE_CATEGORYS, {
+        categorys
+      })
+    }
   },
   //异步获取商家列表
   async getShops({

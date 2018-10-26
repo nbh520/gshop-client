@@ -13,20 +13,13 @@
     </HeaderTop>
     <!-- 首页导航轮播 -->
     <nav class="msite_nav">
-      <div class="swiper-container">
+      <div class="swiper-container" v-if="categorys.length">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <a href="javascript:;" class="link_to_food">
-              <div class="foot_container">
-                <img src="./images/nav/1.jpg">
-              </div>
-              <span>甜品饮品</span>
-            </a>
-            <a href="javascript:" class="link_to_food">
+          <div class="swiper-slide" v-for="(pages, index) in categorysArr" :key="index">
+            <a href="javascript:;" class="link_to_food" v-for="(data, index) in pages" :key="index">
               <div class="food_container">
-                <img src="./images/nav/2.jpg">
+                <img :src="baseImageUrl+data.image_url">
               </div>
-              <span>商超便利</span>
             </a>
           </div>
           <div class="swiper-slide">
@@ -65,13 +58,9 @@ export default {
   data() {
     return {};
   },
-  created() {
-    axios.get("https://elm.cangdu.org/v1/cities?type=guess").then(response => {
-      // resolve(response.data);
-    });
-  },
+  created() {},
   computed: {
-    ...mapState(["address", "getCategorys"])
+    ...mapState(["address", "categorys"])
   },
   mounted() {
     this.$store.dispatch("getCategorys");
