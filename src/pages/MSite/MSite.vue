@@ -71,9 +71,10 @@ export default {
     });
   },
   computed: {
-    ...mapState(["address"])
+    ...mapState(["address", "getCategorys"])
   },
   mounted() {
+    this.$store.dispatch("getCategorys");
     new Swiper(".swiper-container", {
       loop: true,
       autoplay: true,
