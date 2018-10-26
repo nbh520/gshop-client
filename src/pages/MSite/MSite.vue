@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <section class="msite">
-    <HeaderTop :title="this.city">
+    <HeaderTop :title="address.name">
       <span class="header_search" slot="left">
         <i class="iconfont icon-sousuo"></i>
       </span>
@@ -59,17 +59,19 @@ import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
 import ShopList from "../../components/ShopList/ShopList.vue";
 import Swiper from "swiper";
 import axios from "axios";
+import { mapState } from "vuex";
 import "swiper/dist/css/swiper.min.css";
 export default {
   data() {
-    return {
-      city: "武汉市"
-    };
+    return {};
   },
   created() {
     axios.get("https://elm.cangdu.org/v1/cities?type=guess").then(response => {
       // resolve(response.data);
     });
+  },
+  computed: {
+    ...mapState(["address"])
   },
   mounted() {
     new Swiper(".swiper-container", {
@@ -143,6 +145,10 @@ export default {
 
       .header_login_text {
         color: #fff;
+
+        .profile-link {
+          color: #fff;
+        }
       }
     }
   }

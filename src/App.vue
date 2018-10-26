@@ -12,8 +12,7 @@ import FooterGuide from "./components/FooterGuide/FooterGuide.vue";
 import { reqAddress } from "./api";
 export default {
   async mounted() {
-    const result = await reqAddress();
-    console.log(result);
+    this.$store.dispatch("getAddress");
   },
   components: {
     FooterGuide
