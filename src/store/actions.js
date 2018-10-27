@@ -29,7 +29,6 @@ export default {
     commit
   }) {
     const result = await reqCategorys()
-    console.log(result)
     if (result.code === 0) {
       const categorys = result.data
       commit(RECEIVE_CATEGORYS, {

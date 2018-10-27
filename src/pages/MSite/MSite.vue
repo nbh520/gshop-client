@@ -18,18 +18,10 @@
           <div class="swiper-slide" v-for="(pages, index) in categorysArr" :key="index">
             <a href="javascript:;" class="link_to_food" v-for="(data, index) in pages" :key="index">
               <div class="food_container">
-                <img :src="baseImageUrl+data.image_url">
+                <img :src="baseImageUrl + data.image_url">
               </div>
+              <span>{{data.title}}</span>
             </a>
-          </div>
-          <div class="swiper-slide">
-            <a href="javascript:" class="link_to_food">
-              <div class="food_container">
-                <img src="./images/nav/1.jpg">
-              </div>
-              <span>甜品饮品</span>
-            </a>
-            <!--同样省略-->
           </div>
         </div>
           <!-- 轮播图页码 -->
@@ -56,23 +48,56 @@ import { mapState } from "vuex";
 import "swiper/dist/css/swiper.min.css";
 export default {
   data() {
-    return {};
+    return {
+      baseImageUrl: "https://fuss10.elemecdn.com"
+    };
   },
   created() {},
   computed: {
-    ...mapState(["address", "categorys"])
+    ...mapState(["address", "categorys"]),
+    /**
+     * 根据categorys一维数组生成二维数组
+     * 小数组中的元素个数最大是8
+     */
+    categorysArr() {
+      //1.先从当前组件中得到所有食品分类的一维数组
+      const { categorys } = this;
+      //2.准备一个空的二维数组--categorysArr
+      const arr = [];
+      //3.准备一个小数组 -- pages(最大长度为8)
+      let minArr = [];
+      //4.遍历categorys得到处理后的二维数组categorysArr
+      categorys.forEach(data => {
+        //如果当前小数组(pages)已经满了，创建一个新的
+        if (minArr.length === 8) {
+          minArr = [];
+        }
+        if (minArr.length === 0) {
+          arr.push(minArr);
+        }
+        //将分类信息保存到小数组(pages)中
+        minArr.push(data);
+      });
+      return arr;
+    }
+  },
+  watch: {
+    categorys(value) {
+      //轮播
+      this.$nextTick(() => {
+        new Swiper(".swiper-container", {
+          autoplay: true,
+          paination: {
+            el: ".swiper-paination",
+            clickable: true
+          }
+        });
+      });
+    }
   },
   mounted() {
     this.$store.dispatch("getCategorys");
-    new Swiper(".swiper-container", {
-      loop: true,
-      autoplay: true,
-      //分页器
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-      }
-    });
+    this.$store.dispatch("getShops");
   },
   components: {
     HeaderTop,
