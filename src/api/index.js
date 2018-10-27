@@ -22,3 +22,20 @@ export const reqShops = ({
   latitude,
   longitude
 })
+/**
+ * 账号密码登录
+ */
+export const reqPwdLogin = ({
+  name,
+  pwd,
+  captcha
+}) => ajax(BASE_URL + '/login_pwd', {
+  name,
+  pwd,
+  captcha
+}, 'POST')
+
+/**
+ * 获取用户信息
+ */
+export const reqUserInfo = () => ajax(BASE_URL + '/userinfo')

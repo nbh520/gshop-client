@@ -2,7 +2,7 @@
 <template>
   <div>
       <div class="shop_container">
-        <ul class="shop_list">
+        <ul class="shop_list" v-if="shops.length">
           <li class="shop_li border-1px" @click="$router.push('/shop')" v-for="(shop, index) in shops" :key="index">
             <a>
               <div class="shop_left">
@@ -42,6 +42,11 @@
             </a>
           </li>
           <!--省略其他店铺展示-->
+        </ul>
+        <ul v-else>
+            <li v-for="item in 6" :key="item">
+                <img src="./images/shop_back.svg" alt="back">
+            </li>
         </ul>
       </div>
   </div>

@@ -57,7 +57,7 @@
 
 <script>
 import AlertTip from "../../components/AlertTip/AlertTip.vue";
-import { reqCaptcha } from "../../api";
+import { reqCaptcha, reqPwdLogin } from "../../api";
 export default {
   data() {
     return {
@@ -99,7 +99,7 @@ export default {
       // TODO: 停止计时
     },
     //登录
-    login() {
+    async login() {
       let result;
       //前台表单验证
       if (this.loginWay) {
@@ -128,13 +128,27 @@ export default {
           this.showAlert("验证码不能为空");
           return;
         }
-        //TODO: 发送ajax请求密码登录
+        //密码登录
+        result = await reqPwdLogin({ name, pwd, captcha });
       }
       //停止计时
       if (this.computeTime) {
         this.computeTime = 0;
         clearInterval(this.intervalId);
         this.intervalId = undefined;
+      }
+      //数据处理
+      if (result.code === 0) {
+        //登录成功 将信息保存到vuex的state
+        const user = result.data;
+        this.$store.dispatch("recordUser", user);
+        this.$router.replace("/profile");
+      } else {
+        //显示新的图片验证码
+        this.getCaptcha();
+        //显示警告提示
+        const msg = result.msg;
+        this.showAlert(msg);
       }
     },
     showAlert(alertText) {

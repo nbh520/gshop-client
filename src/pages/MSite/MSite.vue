@@ -7,7 +7,14 @@
       </span>
       <span class="header_login" slot="right">
         <span class="header_login_text">
-          <router-link to="/Login" class="profile-link">登录|注册</router-link>
+          <router-link :to="userInfo._id ? '/userinfo' : '/login'" class="profile-link">
+          <span class="header_login_text" v-if="!userInfo._id">
+            登录|注册
+          </span>
+          <span class="header_login_text" v-else>
+            <i class="iconfont icon-sousuo"></i>
+          </span>
+          </router-link>
         </span>
       </span>
     </HeaderTop>
@@ -27,6 +34,7 @@
           <!-- 轮播图页码 -->
          <div class="swiper-pagination"></div>
       </div>
+      <img src="./images/msite_back.svg" alt="back" v-else>
     </nav>
      <!--首页附近商家列表-->
     <div class="msite_shop_list">
@@ -54,7 +62,7 @@ export default {
   },
   created() {},
   computed: {
-    ...mapState(["address", "categorys"]),
+    ...mapState(["address", "categorys", "userInfo"]),
     /**
      * 根据categorys一维数组生成二维数组
      * 小数组中的元素个数最大是8

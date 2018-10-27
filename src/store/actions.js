@@ -6,7 +6,8 @@ import {
 import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORYS,
-  RECEIVE_SHOPS
+  RECEIVE_SHOPS,
+  RECEIVE_USER_INFO
 } from './mutations-types'
 export default {
   //异步获取地址
@@ -24,6 +25,7 @@ export default {
       address: result.data
     })
   },
+
   //异步获取分类列表
   async getCategorys({
     commit
@@ -36,6 +38,7 @@ export default {
       })
     }
   },
+
   //异步获取商家列表
   async getShops({
     commit,
@@ -51,6 +54,15 @@ export default {
     })
     commit(RECEIVE_SHOPS, {
       shops: result.data
+    })
+  },
+
+  //同步记录用户信息
+  recordUser({
+    commit
+  }, userInfo) {
+    commit(RECEIVE_USER_INFO, {
+      userInfo
     })
   }
 }
