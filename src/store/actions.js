@@ -126,13 +126,15 @@ export default {
   //获取商品列表
   async getShopGoods({
     commit
-  }) {
+  }, callback) {
     const result = await reqShopGoods()
     if (result.code === 0) {
       const goods = result.data
       commit(RECEIVE_GOODS, {
         goods
       })
+      //数据更新后通知组件
+      callback && callback()
     }
   }
 
