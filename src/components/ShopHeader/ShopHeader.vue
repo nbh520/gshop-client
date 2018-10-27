@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="shop-header">
-    <nav class="shop-nav">
+    <nav class="shop-nav" :style="{backgroundImage: `url(${info.bgImg})`}">
       <a class="back" @click="$router.back()">
         <i class="iconfont icon-arrow_left"></i>        
       </a>
@@ -24,9 +24,9 @@
             </div>
         </div>
     </div>
-    <div class="shop-header-discounts">
+    <div class="shop-header-discounts" v-if="info.supports" @click="toggleSupportShow">
         <div class="discounts-left">
-            <div class="activity">
+            <div class="activity" :class="supportClasses[info.supports[0].type]">
                 <span class="content-tag">
                     <span class="mini-tag"></span>
                 </span>
@@ -102,11 +102,28 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      shopShow: false
+      shopShow: false, //显示信息
+      supportShow: false,
+      supportClasses: ["activity-green", "activity-red", "activity-orange"]
     };
+  },
+  methods: {
+    toggleShopShow() {
+      this.shopShow = !this.shopShow;
+    },
+    toggleSupportShow() {
+      this.supportShow = !this.supportShow;
+    }
+  },
+  computed: {
+    ...mapState(["info"])
+  },
+  mounted() {
+    console.log(this.info);
   }
 };
 </script>

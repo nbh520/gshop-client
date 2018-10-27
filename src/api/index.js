@@ -39,3 +39,21 @@ export const reqPwdLogin = ({
  * 获取用户信息
  */
 export const reqUserInfo = () => ajax(BASE_URL + '/userinfo')
+
+/**
+ * 退出登录
+ */
+export const reqLogout = () => ajax(BASE_URL + '/logout')
+
+/**
+ * 获取商家信息 (由mock进行拦截)
+ */
+export const reqShopInfo = () => ajax('/info')
+/** 
+ * 获取商家评价数组
+ */
+export const reqShopRatings = () => ajax('/ratings')
+/** 
+ * 获取商家商品数组
+ */
+export const reqShopGoods = () => ajax('/goods')
