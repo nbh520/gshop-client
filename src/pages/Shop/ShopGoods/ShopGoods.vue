@@ -6,7 +6,7 @@
 			<div class="menu-wrapper" ref="menuWrapper" >
 				<!-- 菜单对应的食品列表 -->
 				<ul>
-					<li class="menu-item" v-for="(good, index) in goods" :key="index" :class="{current: index===currentIndex}" >
+					<li class="menu-item" v-for="(good, index) in goods" :key="index" :class="{current: index===currentIndex}" @click="clickMenuItem(index)">
 						<span class="text bottom-border-1px">
 								<img :src="good.icon" v-if="good.icon" class="icon">
 								{{good.name}}
@@ -101,6 +101,9 @@ export default {
         // console.log(x, y);
         this.scrollY = Math.abs(y);
       });
+      this.foodsScroll.on("scrollEnd", ({ x, y }) => {
+        this.scrollY = Math.abs(y);
+      });
     },
     //初始化tops
     _initTops() {
@@ -118,6 +121,14 @@ export default {
       //更新数据
       this.tops = tops;
       console.log(tops.length);
+    },
+    clickMenuItem(index) {
+      //得到目标位置的scrollY
+      const scrollY = this.tops[index];
+      //立即更新ScrollY(让点击的分类项成为当前分类)
+      this.scrollY = scrollY;
+      //平滑滑动右侧列表 better-scroll里的方法
+      this.foodsScroll.scrollTo(0, -scrollY, 300);
     }
   }
 };
