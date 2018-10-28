@@ -138,7 +138,7 @@ export default {
     }
   },
 
-  //同步更新food中count的值
+  //同步更新food中count的值.
   updateFoodCount({
     commit
   }, {
