@@ -136,6 +136,24 @@ export default {
       //数据更新后通知组件
       callback && callback()
     }
+  },
+
+  //同步更新food中count的值
+  updateFoodCount({
+    commit
+  }, {
+    isAdd,
+    food
+  }) {
+    if (isAdd) {
+      commit(INCREMENT_FOOD_COUNT, {
+        food
+      })
+    } else {
+      commit(DECREMENT_FOOD_COUNT, {
+        food
+      })
+    }
   }
 
 }
