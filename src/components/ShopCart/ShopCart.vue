@@ -31,7 +31,7 @@
 									<span></span>
 								</div>
 								<div class="cartcontrol-wrapper">
-									
+
 								</div>
 							</li>
 						</ul>
@@ -39,13 +39,60 @@
 				</div>
 			</transition>
 		</div>
+		<div class="list-mask"></div>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
+import func from "./vue-temp/vue-editor-bridge";
 export default {
   data() {
     return {};
+  },
+  computed: {
+    // 在购物车中获取到cartFoods的state 以及商家的info
+    ...mapState(["cartFoods", "info"]),
+    //获取相应的Getters里的数据
+    ...mapGetters(["totalCount", "totalPrice"]),
+    //通过计算已购食品来设置购物车不同的样式和提示文字
+    payClass() {
+      const { totalPrice } = this;
+      const { minPrice } = this.info;
+      return totalPrice >= minPrice ? "enough" : "not-enough";
+    },
+    payText() {
+      const { totalPrice } = this;
+      const { minPrice } = this.info;
+      if (totalPrice === 0) {
+        return `还差￥${minPrice - totalPrice}元起送`;
+      } else {
+        return "结算";
+      }
+    }
+  },
+  watch: {
+    totalCount: function() {
+      //如果总数量为0，直接不显示
+      if (this.totalCount === 0) {
+        this.isShow = false;
+      }
+    },
+    isShow: function() {
+      if (this.isShow) {
+        this.$nextTick(() => {
+          //实现Bscroll的实例是一个单例
+          if (!this.scroll) {
+            this.scroll = new BScroll(".list-content", {
+              click: true
+            });
+          } else {
+            this.scroll.refresh(); //刷新滚动条，重新统计内容的高度
+          }
+        });
+      }
+      return this.isShow;
+    }
   }
 };
 </script>
