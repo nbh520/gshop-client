@@ -65,5 +65,13 @@ export default {
     if (food.count) {
       food.count--
     }
+  },
+  [CLEAR_CART](state) {
+    state.cartFoods.forEach(food => {
+      //清楚food中的count
+      food.count = 0
+    })
+    //移除购物车中所有的购物项
+    state.cartFoods = []
   }
 }
