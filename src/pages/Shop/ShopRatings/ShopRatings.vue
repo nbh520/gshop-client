@@ -87,6 +87,7 @@ export default {
         });
       });
     });
+    console.log(this.positiveSize);
   },
   computed: {
     ...mapState(["info", "ratings"]),
