@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="rating" ref="rating">
+  <div class="ratings" ref="ratings">
     <div class="rating-content">
       <div class="overview">
         <div class="overview-left">
@@ -70,6 +70,7 @@
 <script>
 import BScroll from "better-scroll";
 import Star from "../../../components/Star/Star.vue";
+import { mapState, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -77,8 +78,8 @@ export default {
       selectType: 2 //选择评价类型：0 满意 ， 1不满意， 2全部
     };
   },
+  //先触发action请求rating数据
   mounted() {
-    this.$;
     this.$store.dispatch("getShopRatings", () => {
       this.$nextTick(() => {
         new BScroll(this.$refs.ratings, {
@@ -86,6 +87,10 @@ export default {
         });
       });
     });
+  },
+  computed: {
+    ...mapState(["info", "ratings"]),
+    ...mapGetters(["positiveSize"])
   }
 };
 </script>
