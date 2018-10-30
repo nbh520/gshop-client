@@ -68,9 +68,24 @@
 </template>
 
 <script>
+import BScroll from "better-scroll";
+import Star from "../../../components/Star/Star.vue";
 export default {
   data() {
-    return {};
+    return {
+      onlyShowText: true, //是否只显示有文本的
+      selectType: 2 //选择评价类型：0 满意 ， 1不满意， 2全部
+    };
+  },
+  mounted() {
+    this.$;
+    this.$store.dispatch("getShopRatings", () => {
+      this.$nextTick(() => {
+        new BScroll(this.$refs.ratings, {
+          click: true
+        });
+      });
+    });
   }
 };
 </script>
