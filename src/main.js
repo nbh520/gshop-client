@@ -7,7 +7,7 @@ import router from './router'
 import FastClick from 'fastclick'
 import store from './store'
 import Button from 'mint-ui/lib/button';
-
+import './fiters'
 //加载mockserver
 import './mock/mockServer'
 Vue.component(Button.name, Button);

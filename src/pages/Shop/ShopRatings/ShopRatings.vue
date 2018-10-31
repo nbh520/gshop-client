@@ -87,11 +87,35 @@ export default {
         });
       });
     });
-    console.log(this.positiveSize);
   },
   computed: {
     ...mapState(["info", "ratings"]),
-    ...mapGetters(["positiveSize"])
+    ...mapGetters(["positiveSize"]),
+    filterRatings() {
+      // 得到相关数据;
+      const { ratings, onlyShowText, selectType } = this;
+      return ratings.filter(rating => {
+        const { rateType, text } = rating;
+        return (
+          (selectType === 2 || selectType === rateType) &&
+          (!onlyShowText || text.length > 0)
+        );
+      });
+    }
+  },
+  filters: {
+    dateFormat: function(input) {
+      let d = new Date(input);
+      let year = d.getFullYear();
+      let month = d.getMonth() + 1;
+      let day = d.getDate() < 10 ? "0" : d.getDate() + "" + d.getDate();
+      let hour = d.getHours();
+      let minutes = d.getMinutes();
+      let seconds = d.getSeconds();
+      return (
+        year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + day
+      );
+    }
   }
 };
 </script>
