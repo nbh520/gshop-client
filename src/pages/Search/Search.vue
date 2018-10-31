@@ -1,21 +1,64 @@
 <!--  -->
 <template>
-  <div>
     <section class="search">
       <headerTop title="搜索"></headerTop>
-      <form action="#" class="search_form">
-        <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input" >
+      <form action="#" class="search_form" @submit.prevent="search">
+        <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input"  v-model="keyword">
         <input type="submit" class="search_submit">
       </form>
+      <section class="list" v-if="!noSearchShop">
+        <ul class="list_container">
+          <router-link :to="{path : '/shop',query:{id:item.id}}" tag="li" v-for="item in searchShops " :key="item.id" class="list-li">
+            <section class="item_left">
+              <img src="" alt="">
+            </section>
+            <section class="item_right">
+              <div class="item_right_text">
+                <p>
+                  <span></span>
+                </p>
+                <p>
+                  月售
+                </p>
+                <p>
+                  元起送
+                </p>
+              </div>
+            </section>
+          </router-link>
+        </ul>
+      </section>
+    
+      <div class="search_none" v-else>很抱歉，无搜素结果</div>
     </section>
-  </div>
 </template>
 
 <script>
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
+import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      keyword: "",
+      imgBaseUrl: "http://cangdu.org:8001/img/",
+      noSearchShop: false
+    };
+  },
   components: {
     HeaderTop
+  },
+  computed: {
+    ...mapState(["searchShops"])
+  },
+  methods: {
+    search() {
+      //得到搜索关键字
+      const keyword = this.keyword.trim();
+      //进行搜索
+      if (keyword) {
+        this.$store.dispatch("searchShops", keyword);
+      }
+    }
   }
 };
 </script>

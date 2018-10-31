@@ -157,9 +157,15 @@ export default {
       })
     }
   },
+  // 同步清空购物车
+  clearCart({
+    commit
+  }) {
+    commit(CLEAR_CART)
+  },
 
   //获取商家商品列表的action
-  async searchShop({
+  async searchShops({
     commit,
     state
   }, keyword) {

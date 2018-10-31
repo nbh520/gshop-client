@@ -63,7 +63,7 @@ export const reqShopGoods = () => ajax('/goods')
  * @param {*} geohash
  * @param {*} keyword
  */
-const reqSearchShop = (geohash, keyword) => ajax(BASE_URL + '/search_shops', {
+export const reqSearchShop = (geohash, keyword) => ajax(BASE_URL + '/search_shops', {
   geohash,
   keyword
 })
