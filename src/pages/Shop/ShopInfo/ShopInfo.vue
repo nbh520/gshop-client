@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import BScroll from "better-scroll";
 export default {
   data() {
     return {};
@@ -55,6 +56,20 @@ export default {
     }
     //有数据那么就初始化
     this._initScroll();
+  },
+  methods: {
+    _initScroll() {
+      new BScroll(".shop-info");
+      //计算ul的宽度
+      const ul = this.$ref.picsUl;
+      const liWidth = 120;
+      const space = 6;
+      const count = this.info.pics.length;
+      ul.style.width = (liWidth + space) * count - space + "px";
+      new BScroll(".pic-wrapper", {
+        scrollX: true //水平滑动
+      });
+    }
   }
 };
 </script>

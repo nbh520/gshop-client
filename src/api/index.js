@@ -57,3 +57,13 @@ export const reqShopRatings = () => ajax('/ratings')
  * 获取商家商品数组
  */
 export const reqShopGoods = () => ajax('/goods')
+
+/**
+ * 根据经纬度和关键字搜索商铺列表的接口
+ * @param {*} geohash
+ * @param {*} keyword
+ */
+const reqSearchShop = (geohash, keyword) => ajax(BASE_URL + '/search_shops', {
+  geohash,
+  keyword
+})

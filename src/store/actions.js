@@ -5,7 +5,8 @@ import {
   reqUserInfo,
   reqShopGoods,
   reqShopRatings,
-  reqShopInfo
+  reqShopInfo,
+  reqSearchShop
 } from '../api'
 import {
   RECEIVE_ADDRESS,
@@ -14,7 +15,8 @@ import {
   RECEIVE_USER_INFO,
   RECEIVE_GOODS,
   RECEIVE_INFO,
-  RECEIVE_RATINGS
+  RECEIVE_RATINGS,
+  RECEIVE_SEARCH_SHOPS
 } from './mutations-types'
 
 export default {
@@ -154,6 +156,20 @@ export default {
         food
       })
     }
-  }
+  },
 
+  //获取商家商品列表的action
+  async searchShop({
+    commit,
+    state
+  }, keyword) {
+    const geohash = state.latitude + ',' + state.longitude
+    const result = await reqSearchShop(geohash, keyword)
+    if (result.code === 0) {
+      const searchShop = result.data
+      commit(RECEIVE_SEARCH_SHOPS, {
+        searchShop
+      })
+    }
+  }
 }
