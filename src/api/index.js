@@ -1,7 +1,6 @@
 import ajax from './ajax'
-import axios from 'axios'
-import fetch from './fetch'
 const BASE_URL = '/api'
+const BASE_URL_build = 'http://localhost:4000'
 /**
  *获取当前地址
  */
