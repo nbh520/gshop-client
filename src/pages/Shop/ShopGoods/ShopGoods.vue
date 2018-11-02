@@ -141,6 +141,7 @@ export default {
     showFood(food) {
       //设置要传递给food的组件的数据
       this.food = food;
+      console.log(food);
       //显示food组件(在父组件中调用子组件对象的方法)
       this.$refs.food.toggleShow();
     }

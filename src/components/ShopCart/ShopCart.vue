@@ -8,7 +8,7 @@
 						<div class="logo">
 							<i class="iconfont icon-shopping_cart"></i>
 						</div>
-						<div class="num"></div>
+						<div class="num" v-if="totalCount">{{totalCount}}</div>
 					</div>
 					<div class="price"></div>
 					<div class="desc"></div>
@@ -73,12 +73,12 @@ export default {
     }
   },
   watch: {
-    // totalCount: function() {
-    //   //如果总数量为0，直接不显示
-    //   if (this.totalCount === 0) {
-    //     this.isShow = false;
-    //   }
-    // },
+    totalCount: function() {
+      //如果总数量为0，直接不显示
+      if (this.totalCount === 0) {
+        this.isShow = false;
+      }
+    },
     isShow: function() {
       if (this.isShow) {
         this.$nextTick(() => {
