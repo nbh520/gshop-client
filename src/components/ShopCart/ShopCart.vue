@@ -3,10 +3,10 @@
   <div>
     <div class="shopcart">
 			<div class="content">
-				<div class="content-left">
+				<div class="content-left" @click="isShow = !isShow">
 					<div class="logo-wrapper">
 						<div class="logo">
-							<i class="iconfont icon-shopping"></i>
+							<i class="iconfont icon-shopping_cart"></i>
 						</div>
 						<div class="num"></div>
 					</div>
@@ -14,11 +14,11 @@
 					<div class="desc"></div>
 				</div>
 				<div class="content-right">
-					<div class="pay"></div>
+					<div class="pay">去结算</div>
 				</div>
 			</div>
 			<transition name="move">
-				<div class="shopcart-list">
+				<div class="shopcart-list" v-if="isShow">
 					<div class="list-header">
 						<h1 class="title"></h1>
 						<span class="empty">清空</span>
@@ -39,16 +39,17 @@
 				</div>
 			</transition>
 		</div>
-		<div class="list-mask"></div>
+		<div class="list-mask" v-if="isShow"></div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import func from "./vue-temp/vue-editor-bridge";
 export default {
   data() {
-    return {};
+    return {
+      isShow: false
+    };
   },
   computed: {
     // 在购物车中获取到cartFoods的state 以及商家的info
@@ -72,12 +73,12 @@ export default {
     }
   },
   watch: {
-    totalCount: function() {
-      //如果总数量为0，直接不显示
-      if (this.totalCount === 0) {
-        this.isShow = false;
-      }
-    },
+    // totalCount: function() {
+    //   //如果总数量为0，直接不显示
+    //   if (this.totalCount === 0) {
+    //     this.isShow = false;
+    //   }
+    // },
     isShow: function() {
       if (this.isShow) {
         this.$nextTick(() => {
@@ -135,9 +136,15 @@ export default {
 					height: 100%;
 					border-radius: 50%;
 					text-align: center;
-					background: #2b343c;
+					background: #00a0dc;
 
-					&.highlight {
+					.icon-shopping_cart {
+						font-size: 24px;
+						line-height: 44px;
+						color: #fff;
+					}
+
+					., &.highlight {
 						background: $green;
 					}
 
@@ -205,6 +212,7 @@ export default {
 				font-size: 12px;
 				font-weight: 700;
 				color: #fff;
+				background: #00b43c;
 
 				&.not-enough {
 					background: #2b333b;
