@@ -19,7 +19,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
   //所有路由
-  mode: 'history', //去掉URL中的哈希#
+  // mode: 'history', //去掉URL中的哈希#
   routes: [{
       path: '/',
       redirect: '/msite'
