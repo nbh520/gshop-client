@@ -1,14 +1,12 @@
 <!--  -->
 <template>
-  <div>
     <div class="cartcontrol">
       <transition name="move">
         <div class="iconfont icon-remove_circle_outline"></div>
       </transition>
       <div class="cart-count"></div>
-      <div class="iconfont icon-add_circle"></div>
+      <div class="iconfont icon-add_circle" @click.stop="add"></div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -22,6 +20,9 @@ export default {
   methods: {
     updateFoodCount(isAdd) {
       this.$store.dispatch("updateFoodCount", { isAdd, food: this.food });
+    },
+    add() {
+      console.log(24);
     }
   }
 };
@@ -32,7 +33,7 @@ export default {
 .cartcontrol {
   font-size: 0;
 
-  .cart-decrease {
+  .icon-remove_circle_outline {
     display: inline-block;
     padding: 6px;
     line-height: 24px;
@@ -45,7 +46,7 @@ export default {
     padding: 6px;
     line-height: 24px;
     font-size: 24px;
-    color: $green;
+    color: #00a0dc;
 
     &.move-enter-active, &.move-leave-active {
       transition: all 0.3s;
@@ -68,12 +69,12 @@ export default {
     color: rgb(147, 153, 159);
   }
 
-  .icon-addcircle {
+  .icon-add_circle {
     display: inline-block;
     padding: 6px;
     line-height: 24px;
     font-size: 24px;
-    color: $green;
+    color: #00a0dc;
   }
 }
 </style>

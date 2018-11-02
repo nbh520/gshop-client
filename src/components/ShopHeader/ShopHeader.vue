@@ -7,20 +7,30 @@
       </a>
     </nav>
     <div class="shop-content">
-        <img class="content-image">
+        <img :src="info.bgImg" class="content-image">
         <div class="header-content">
             <h2 class="content-title">
                 <span class="content-tag">
                     <span class="mini-tag">品牌</span>
                 </span>
-                <span class="content-name"></span>
-                <i class="content-icon"></i>
+                <span class="content-name">
+                    {{info.name}}
+                </span>
+                <i class="content-icon" @click="toggleShopShow"></i>
             </h2>
             <div class="shop-message">
-                <span class="shop-message-detail"></span>
-                <span class="shop-message-detail"></span>
-                <span class="shop-message-detail"></span>
-                <span class="shop-message-detail"></span>
+                <span class="shop-message-detail">
+                    {{info.foodScore}}
+                </span>
+                <span class="shop-message-detail">
+                    月售{{info.sellCount}}单
+                </span>
+                <span class="shop-message-detail">
+                    涵哥转送 {{info.deliveryTime}}分钟
+                </span>
+                <span class="shop-message-detail">
+                    距离{{info.distance}}
+                </span>
             </div>
         </div>
     </div>
@@ -28,12 +38,12 @@
         <div class="discounts-left">
             <div class="activity" :class="supportClasses[info.supports[0].type]">
                 <span class="content-tag">
-                    <span class="mini-tag"></span>
+                    <span class="mini-tag">{{info.supports[0].name}}</span>
                 </span>
-                <span class="activity-content ellipsis"></span>
+                <span class="activity-content ellipsis">{{info.supports[0].content}}</span>
             </div>
         </div>
-        <div class="discounts-right">个优惠</div>
+        <div class="discounts-right">{{info.supports.length}}个优惠</div>
     </div>
     <transition name="fade">
       <div class="shop-brief-modal" v-show="shopShow">
@@ -46,23 +56,23 @@
           </h2>
           <ul class="brief-modal-msg">
             <li>
-              <h3></h3>
+              <h3>{{info.score}}</h3>
               <p>评分</p>
             </li>
             <li>
-              <h3>单</h3>
+              <h3>{{info.sellCount}}单</h3>
               <p>月售</p>
             </li>
             <li>
-              <h3></h3>
+              <h3>{{info.deliveryTime}}</h3>
               <p>约分钟</p>
             </li>
             <li>
-              <h3>元</h3>
+              <h3>{{info.deliveryPrice}}元</h3>
               <p>配送费用</p>
             </li>
             <li>
-              <h3></h3>
+              <h3>{{info.distance}}</h3>
               <p>距离</p>
             </li>
           </ul>
@@ -71,7 +81,7 @@
           </h3>
           <div class="brief-modal-notice">
           </div>
-          <div class="mask-footer" >
+          <div class="mask-footer" @click="shopShow = false">
             <span class="iconfont icon-close"></span>
           </div>
         </div>
@@ -82,7 +92,7 @@
       <div class="activity-sheet" v-show="supportShow">
         <div class="activity-sheet-content">
           <h2 class="activity-sheet-title">优惠活动</h2>
-          <!-- <ul class="list">
+          <ul class="list">
             <li class="activity-item" v-for="(support, index) in info.supports"
                 :key="index" :class="supportClasses[support.type]">
             <span class="content-tag">
@@ -90,8 +100,8 @@
               </span>
               <span class="activity-content">{{support.content}}</span>
             </li>
-          </ul> -->
-          <div class="activity-sheet-close" >
+          </ul>
+          <div class="activity-sheet-close" @click="supportShow = false" >
             <span class="iconfont icon-close"></span>
           </div>
         </div>
@@ -124,6 +134,7 @@ export default {
   },
   mounted() {
     console.log(this.info);
+    console.log();
   }
 };
 </script>

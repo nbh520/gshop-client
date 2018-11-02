@@ -5,7 +5,7 @@
 			<div class="image-header">
 				<img src="" alt="">
 				<p class="foodpanel-desc"></p>
-				<div class="back">
+				<div class="back" @click="isShow = false"> 
 					<i class="iconfont icon-arrow_left"></i>
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 				</div>
 			</div>
 		</div>
-	  <div class="food-cover"></div>
+	  <div class="food-cover" @click="isShow = false"></div>
   </div>
 </template>
 
