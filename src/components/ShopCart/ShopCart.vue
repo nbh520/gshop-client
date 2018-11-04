@@ -78,7 +78,8 @@ export default {
       if (this.totalCount === 0) {
         this.isShow = false;
       }
-    },
+		},
+		//
     isShow: function() {
       if (this.isShow) {
         this.$nextTick(() => {
