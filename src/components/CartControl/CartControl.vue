@@ -20,9 +20,6 @@ export default {
   methods: {
     updateFoodCount(isAdd) {
       this.$store.dispatch("updateFoodCount", { isAdd, food: this.food });
-    },
-    add() {
-      console.log(24);
     }
   }
 };
