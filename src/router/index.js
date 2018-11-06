@@ -18,7 +18,6 @@ const Profile = () => import('../pages/Profile/Profile.vue')
 Vue.use(VueRouter)
 
 export default new VueRouter({
-  //所有路由
   // mode: 'history', //去掉URL中的哈希#
   routes: [{
       path: '/',
