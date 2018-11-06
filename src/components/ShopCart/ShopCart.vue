@@ -56,7 +56,7 @@ export default {
     ...mapState(["cartFoods", "info"]),
     //获取相应的Getters里的数据
     ...mapGetters(["totalCount", "totalPrice"]),
-    //通过计算已购食品来设置购物车不同的样式和提示文字。
+    //通过计算已购食品来设置购物车不同的样式和提示文字
     payClass() {
       const { totalPrice } = this;
       const { minPrice } = this.info;
