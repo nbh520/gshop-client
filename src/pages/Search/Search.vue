@@ -10,7 +10,7 @@
         <ul class="list_container">
           <router-link :to="{path : '/shop',query:{id:item.id}}" tag="li" v-for="item in searchShops " :key="item.id" class="list-li">
             <section class="item_left">
-              <img src="" alt="">
+              <img :src="imgBaseUrl+item.image_path" alt="">
             </section>
             <section class="item_right">
               <div class="item_right_text">
