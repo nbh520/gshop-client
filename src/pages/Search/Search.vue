@@ -6,7 +6,7 @@
         <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input"  v-model="keyword">
         <input type="submit" class="search_submit" value="搜索">
       </form>
-      <section class="list" v-if="!noSearchShop">
+      <section class="list" v-if="noSearchShop">
         <ul class="list_container">
           <router-link :to="{path : '/shop',query:{id:item.id}}" tag="li" v-for="item in searchShops " :key="item.id" class="list-li">
             <section class="item_left">
@@ -15,13 +15,13 @@
             <section class="item_right">
               <div class="item_right_text">
                 <p>
-                  <span></span>
+                  <span>{{item.name}}</span>
                 </p>
                 <p>
                   月售
                 </p>
                 <p>
-                  元起送
+                  {{item.minPrice}}元起送
                 </p>
               </div>
             </section>
@@ -29,7 +29,7 @@
         </ul>
       </section>
     
-      <div class="search_none" v-else>很抱歉，无搜素结果</div>
+      <div class="search_none" v-else>很抱歉，无搜索结果</div>
     </section>
 </template>
 
@@ -41,7 +41,7 @@ export default {
     return {
       keyword: "",
       imgBaseUrl: "http://cangdu.org:8001/img/",
-      noSearchShop: false
+      noSearchShop: true
     };
   },
   components: {
@@ -58,8 +58,20 @@ export default {
       //进行搜索
       if (keyword) {
         this.$store.dispatch("searchShops", keyword);
-        console.log(this.searchShops);
+        this.checkResult(() => {
+          if (this.searchShops.length === 0) {
+            this.noSearchShop = false;
+          } else {
+            this.noSearchShop = true;
+          }
+        });
       }
+    },
+    //核对搜索结果
+    checkResult(callback) {
+      setTimeout(() => {
+        callback();
+      }, 1000);
     }
   }
 };

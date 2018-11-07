@@ -172,9 +172,10 @@ export default {
     const geohash = state.latitude + ',' + state.longitude
     const result = await reqSearchShop(geohash, keyword)
     if (result.code === 0) {
-      const searchShop = result.data
+      const searchShops = result.data
+      console.log(searchShops)
       commit(RECEIVE_SEARCH_SHOPS, {
-        searchShop
+        searchShops
       })
     }
   }
