@@ -39,7 +39,7 @@
               </section>
               <section class="login_message">
                 <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
-                <img class="get_verification"  alt="captcha" src="http://nibohan.xin:4000/captcha"  ref="captcha" @click="getCaptcha">
+                <img class="get_verification"  alt="captcha" src="http://localhost:4000/captcha"  ref="captcha" @click="getCaptcha">
               </section>
             </section>
           </div>
@@ -48,7 +48,7 @@
           <a href="javascript:;" class="about_us">关于我们</a>
       </div>
        <a href="javascript:" class="go_back" @click="$router.back()">
-        <i class="iconfont icon-arrow-left"></i>
+        <i class="iconfont icon-arrow_left"></i>
       </a>
     </div>
     <AlertTip :alertText="alertText" v-show="alertShow" @closeTip="closeTip"></AlertTip>
@@ -163,7 +163,7 @@ export default {
     //获取新的图片验证码
     async getCaptcha() {
       this.$refs.captcha.src =
-        "http://nibohan.xin:4000/captcha?time=" + Date.now();
+        "http://localhost:4000/captcha?time=" + Date.now();
     }
   },
   components: {
@@ -361,8 +361,8 @@ export default {
 
     .go_back {
       position: absolute;
-      top: 5px;
-      left: 5px;
+      top: 20px;
+      left: 15px;
       width: 30px;
       height: 30px;
 
