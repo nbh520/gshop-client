@@ -6,7 +6,9 @@
       <section class="order_no_login">
         <img src="./images/order/person.png" alt="">
         <h3>登录后查看外卖订单</h3>
-        <button>立即登录</button>
+        <button>
+          <router-link to="/login">立即登录</router-link>
+        </button>
       </section>
     </section>
   </div>
@@ -84,6 +86,10 @@ export default {
       outline: none;
       border-radius: 5px;
       padding: 10px 20px;
+
+      >a {
+        color: #fff;
+      }
     }
   }
 }

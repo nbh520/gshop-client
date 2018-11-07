@@ -4,7 +4,7 @@
       <headerTop title="搜索"></headerTop>
       <form action="#" class="search_form" @submit.prevent="search">
         <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input"  v-model="keyword">
-        <input type="submit" class="search_submit">
+        <input type="submit" class="search_submit" value="搜索">
       </form>
       <section class="list" v-if="!noSearchShop">
         <ul class="list_container">
@@ -50,6 +50,7 @@ export default {
   computed: {
     ...mapState(["searchShops"])
   },
+  mounted() {},
   methods: {
     search() {
       //得到搜索关键字
@@ -57,6 +58,7 @@ export default {
       //进行搜索
       if (keyword) {
         this.$store.dispatch("searchShops", keyword);
+        console.log(this.searchShops);
       }
     }
   }

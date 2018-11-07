@@ -68,7 +68,7 @@
         <!-- Mint外卖会员卡 -->
         <a href="javascript:" class="my_order">
           <span>
-            <i class="iconfont icon-viptehuishiduan"></i>
+            <i class="iconfont icon-vip"></i>
           </span>
           <div class="my_order_div">
             <span>Mint外卖会员卡</span>
@@ -82,7 +82,7 @@
         <!-- 服务中心 -->
         <a href="javascript:" class="my_order">
           <span>
-            <i class="iconfont icon-lianxikefu"></i>
+            <i class="iconfont icon-fuwu"></i>
           </span>
           <div class="my_order_div">
             <span>服务中心</span>
