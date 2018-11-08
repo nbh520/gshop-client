@@ -8,19 +8,19 @@
       <section class="profile-number">
         <router-link :to="userInfo._id ? '/userInfo' : 'login'" class="profile-link">
           <div class="profile_image">
-            <i class="iconfont icon-yonghuming"></i>
+            <i class="iconfont icon-person"></i>
           </div>
           <div class="user-info">
             <p class="user-info-top" v-if="!userInfo.phone">{{userInfo.name || '登录/注册'}}</p>
             <p>
               <span class="user-icon">
-                <i class="iconfont icon-msnui-tel icon-mobile"></i>
+                <i class="iconfont icon-msnui-tel icon-shouji"></i>
               </span>
               <span class="icon-mobile-number">{{userInfo.phone || '暂无绑定手机号'}}</span>
             </p>
           </div>
           <span class="arrow">
-            <i class="iconfont icon-previeweight"></i>
+            <i class="iconfont icon-jiantou1"></i>
           </span>
         </router-link>
       </section>
@@ -186,7 +186,7 @@ export default {
         overflow: hidden;
         vertical-align: top;
 
-        .icon-yonghuming {
+        .icon-person {
           background: #e4e4e4;
           font-size: 62px;
         }
@@ -213,7 +213,7 @@ export default {
             width: 20px;
             height: 20px;
 
-            .icon-mobile {
+            .icon-shouji {
               font-size: 30px;
               vertical-align: text-top;
             }
@@ -233,7 +233,7 @@ export default {
         right: 15px;
         top: 40%;
 
-        .icon-previewright {
+        .icon-jiantou1 {
           color: #fff;
           font-size: 5px;
         }
@@ -324,6 +324,7 @@ export default {
 
         .icon-dingdan {
           color: #02a774;
+          font-size: 23px;
         }
 
         .icon-jifen {

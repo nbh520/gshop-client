@@ -3,7 +3,9 @@
   <section class="msite">
     <HeaderTop :title="address.name">
       <span class="header_search" slot="left">
-        <i class="iconfont icon-sousuo"></i>
+        <router-link to="/search">
+        <i class="iconfont icon-sousuo"></i>        
+        </router-link>
       </span>
       <span class="header_login" slot="right">
         <span class="header_login_text">
@@ -239,6 +241,10 @@ export default {
 
     .shop_header {
       padding: 10px 10px 0;
+
+      .icon-xuanxiang {
+        font-size: 17px;
+      }
 
       .shop_icon {
         margin-left: 5px;

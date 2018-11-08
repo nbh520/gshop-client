@@ -8,9 +8,9 @@
       </form>
       <section class="list" v-if="noSearchShop">
         <ul class="list_container">
-          <router-link :to="{path : '/shop',query:{id:item.id}}" tag="li" v-for="item in searchShops " :key="item.id" class="list-li">
+          <router-link :to="{path : '/shop',query:{id:item.id}}" tag="li" v-for="item in searchShops " :key="item.id" class="list_li">
             <section class="item_left">
-              <img :src="imgBaseUrl+item.image_path" alt="">
+              <img :src="imgBaseUrl+item.image_path" alt="" class="restaurant_img">
             </section>
             <section class="item_right">
               <div class="item_right_text">
@@ -18,10 +18,10 @@
                   <span>{{item.name}}</span>
                 </p>
                 <p>
-                  月售
+                  月售{{item.month_sales||item.recent_order_num}} 单
                 </p>
                 <p>
-                  {{item.minPrice}}元起送
+                  {{item.delivery_fee||item.float_minimum_order_amount}} 元起送 / 距离{{item.distance}}
                 </p>
               </div>
             </section>
@@ -64,6 +64,7 @@ export default {
           } else {
             this.noSearchShop = true;
           }
+          console.log(this.searchShops);
         });
       }
     },
