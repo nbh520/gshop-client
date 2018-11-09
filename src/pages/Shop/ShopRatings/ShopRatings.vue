@@ -44,19 +44,19 @@
       </div>
       <div class="rating-wrapper">
         <ul>
-          <li class="rating-item">
+          <li class="rating-item" v-for="(item, index) in ratings" :key="index">
             <div class="avatar">
-              <img src="" width="28" height="28" alt="">
+              <img :src="item.avatar" width="28" height="28" alt="">
             </div>
             <div class="content">
-              <h1 class="name"></h1>
+              <h1 class="name">{{item.username}}</h1>
               <div class="star-wrapper">
                 <span class="delivery"></span>
               </div>
-              <p class="text"></p>
+              <p class="text">{{item.text}}</p>
               <div class="recommend">
                 <span class="iconfont"></span>
-                <span class="item"></span>
+                <span class="item" v-for="(label, index) in item.recommend" :key="index">{{label}}</span>
               </div>
               <div class="item"></div>
             </div>
@@ -87,6 +87,9 @@ export default {
         });
       });
     });
+    setTimeout(() => {
+      console.log(this.ratings);
+    }, 1000);
   },
   computed: {
     ...mapState(["info", "ratings"]),

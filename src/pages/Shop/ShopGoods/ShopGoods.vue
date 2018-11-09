@@ -127,7 +127,6 @@ export default {
       });
       //更新数据
       this.tops = tops;
-      console.log(tops.length);
     },
     clickMenuItem(index) {
       //得到目标位置的scrollY
