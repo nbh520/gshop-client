@@ -11,15 +11,15 @@
         <div class="overview-right">
           <div class="score-wrapper">
             <span class="title">服务态度</span>
-            <span class="score"></span>
+            <span class="score">{{info.serviceScore}}</span>
           </div>
           <div class="score-wrapper">
             <span class="title">商品评分</span>
-            <span class="score"></span>
+            <span class="score"> {{info.foodScore}}</span>
           </div>
           <div class="delivery-wrapper">
             <span class="title">送达时间</span>
-            <span class="delivery">分钟</span>
+            <span class="delivery">{{info.deliveryTime}}分钟</span>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default {
       });
     });
     setTimeout(() => {
-      console.log(this.ratings);
+      console.log(this.info);
     }, 1000);
   },
   computed: {
@@ -202,6 +202,7 @@ export default {
           line-height: 18px;
           vertical-align: top;
           font-size: 12px;
+          margin-left: 10px;
           color: rgb(255, 153, 0);
         }
       }
@@ -216,7 +217,7 @@ export default {
         }
 
         .delivery {
-          margin-left: 12px;
+          margin-left: 10px;
           font-size: 12px;
           color: rgb(147, 153, 159);
         }

@@ -6,10 +6,10 @@
         <h3 class="section-title">配送信息</h3>
         <div class="delivery">
           <div>
-            <span class="delivery-icon"></span>
-            <span>由商家配送提供配送，约分钟到达，距离</span>
+            <span class="delivery-icon">涵哥专送</span>
+            <span>由商家配送提供配送，约{{info.deliveryTime}}分钟到达，距离{{info.distance}}</span>
           </div>
-          <div class="delivery-money">配送费</div>
+          <div class="delivery-money">配送费￥{{info.minPrice}}元</div>
         </div>
       </section>
       <div class="spit"></div>
@@ -17,7 +17,9 @@
       <section class="section">
         <h3 class="section-title">活动与服务</h3>
         <div class="activity">
-          <div class="activity-item"></div>
+          <div class="activity-item" v-for="(item, index) in info.supports" :key="index">
+            {{item.content}}
+          </div>
         </div>
       </section>
 
@@ -26,17 +28,20 @@
       <section class="section">
         <h3 class="section-title">商家实景</h3>
         <div class="pic-wrapper">
-          <ul class="pic-list" ref="picsUl"></ul>
+          <ul class="pic-list" ref="picsUl" >
+            <img class="pic-item" v-for="(item, index) in info.pics" :key="index" :src="item" alt="">
+          </ul>
         </div>
       </section>
 
       <section class="section">
         <h3 class="section-title">商家信息</h3>
+        <p>{{info.bulletin}}</p>
         <ul class="detail">
-          <li><span class="bold">品类</span></li>
-          <li><span class="bold">商家电话</span></li>
-          <li><span class="bold">地址</span></li>
-          <li><span class="bold">营业时间</span></li>
+          <li><span class="bold">品类</span>{{info.category}}</li>
+          <li><span class="bold">商家电话</span>{{info.phone}}</li>
+          <li><span class="bold">地址</span>{{info.address}}</li>
+          <li><span class="bold">营业时间</span>{{info.workTime}}</li>
         </ul>
       </section>
     </div>
@@ -45,17 +50,24 @@
 
 <script>
 import BScroll from "better-scroll";
+import { mapState } from "vuex";
 export default {
   data() {
     return {};
   },
   mounted() {
     //如果没有数据就结束
+    setTimeout(() => {
+      console.log(this.info);
+    }, 1000);
     if (!this.info.pics) {
       return;
     }
     //有数据那么就初始化
     this._initScroll();
+  },
+  computed: {
+    ...mapState(["info"])
   },
   methods: {
     _initScroll() {
@@ -102,6 +114,12 @@ export default {
         float: right;
         color: #ccc;
       }
+    }
+
+    >p {
+      font-size: 13px;
+      line-height: 16px;
+      padding: 5px 0px;
     }
 
     .delivery {
