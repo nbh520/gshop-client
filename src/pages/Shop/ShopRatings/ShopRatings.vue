@@ -15,7 +15,7 @@
           </div>
           <div class="score-wrapper">
             <span class="title">商品评分</span>
-            <span class="score"> {{info.foodScore}}</span>
+            <span class="score"> <Star :score="info.foodScore" :size="24"></Star></span>
           </div>
           <div class="delivery-wrapper">
             <span class="title">送达时间</span>
@@ -119,6 +119,9 @@ export default {
         year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + day
       );
     }
+  },
+  components: {
+    Star
   }
 };
 </script>
