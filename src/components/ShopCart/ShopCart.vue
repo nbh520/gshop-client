@@ -14,7 +14,7 @@
 					<div class="desc"></div>
 				</div>
 				<div class="content-right">
-					<div class="pay">去结算</div>
+					<div class="pay">{{payText}}</div>
 				</div>
 			</div>
 			<transition name="move">
