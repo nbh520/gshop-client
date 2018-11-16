@@ -5,7 +5,7 @@
         <div class="iconfont icon-remove_circle_outline"></div>
       </transition>
       <div class="cart-count"></div>
-      <div class="iconfont icon-add_circle" @click.stop="updateFoodCount(1)"></div>
+      <div class="iconfont icon-add_circle" @click.stop="updateFoodCount(food)"></div>
     </div>
 </template>
 

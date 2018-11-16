@@ -22,23 +22,23 @@
 					<li class="food-list-hook" v-for="(good, index) in goods" :key="index">
 						<h1 class="title">{{good.name}}</h1>
 						<ul>
-							<li class="food-item bottom-border-1px" v-for="(food, index) in good.foods" :key="index" @click="showFood(food)">
+							<li class="food-item bottom-border-1px" v-for="(item, index) in good.foods" :key="index" @click="showFood(item)">
 								<div class="icon">
-									<img width="57" height="57" :src="food.icon">
+									<img width="57" height="57" :src="item.icon">
 								</div>
 								<div class="content">
-									<h2 class="name">{{food.name}}</h2>
-									<p class="desc">{{food.description}}</p>
+									<h2 class="name">{{item.name}}</h2>
+									<p class="desc">{{item.description}}</p>
 									<div class="extra">
-										<span class="count">月售{{food.sellCount}}份</span>
-										<span>好评率{{food.rating}}%</span>
+										<span class="count">月售{{item.sellCount}}份</span>
+										<span>好评率{{item.rating}}%</span>
 									</div>
 									<div class="price">
-										<span class="now">￥{{food.price}}</span>
-										<span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
+										<span class="now">￥{{item.price}}</span>
+										<span class="old" v-if="item.oldPrice">￥{{item.oldPrice}}</span>
 									</div>
 									<div class="cartcontrol-wrapper">
-										<CartControl :food="food"></CartControl>
+										<CartControl :food="item"></CartControl>
 									</div>
 								</div>
 							</li>
@@ -48,7 +48,7 @@
 			</div>
 			<shopCart></shopCart>
 		</div>
-		<Food :food="food" ref="food"></Food>
+		<Food :foodDesc="foodDesc" ref="food"></Food>
 	
 	
 	</div> 
@@ -65,7 +65,7 @@ export default {
     return {
       scrollY: 0, // 右侧Y轴滚动的坐标
       tops: [], //包含右侧所有分类小列表的top值
-      food: {} //需要显示的food
+      foodDesc: {} //需要显示的food
     };
   },
   mounted() {
@@ -77,7 +77,7 @@ export default {
     });
   },
   computed: {
-    ...mapState(["goods"]),
+    ...mapState(["goods", "food"]),
 
     //计算当前分类的下标
     currentIndex() {
@@ -139,7 +139,7 @@ export default {
     //显示点击的food
     showFood(food) {
       //设置要传递给food的组件的数据
-      this.food = food;
+      this.foodDesc = food;
       console.log(food);
       //显示food组件(在父组件中调用子组件对象的方法)
       this.$refs.food.toggleShow();

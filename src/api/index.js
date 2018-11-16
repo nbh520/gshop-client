@@ -1,6 +1,5 @@
 import ajax from './ajax'
 // const BASE_URL = '/api'
-const BASE_URL_build = 'http://localhost:4000'
 const BASE_URL = process.env.API_ROOT;
 /**
  *获取当前地址
@@ -34,7 +33,6 @@ export const reqPwdLogin = ({
   pwd,
   captcha
 }, 'POST')
-
 /**
  * 获取用户信息
  */

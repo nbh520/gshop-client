@@ -3,21 +3,21 @@
   <div class="food" v-if="isShow">
 		<div class="food-content">
 			<div class="image-header">
-				<img :src="food.image" alt="">
-				<p class="foodpanel-desc">{{food.info}}</p>
+				<img :src="foodDesc.image" alt="">
+				<p class="foodpanel-desc">{{foodDesc.info}}</p>
 				<div class="back" @click="isShow = false"> 
 					<i class="iconfont icon-arrow_left"></i>
 				</div>
 			</div>
 			<div class="content">
-				<h1 class="title">{{food.name}}</h1>
+				<h1 class="title">{{foodDesc.name}}</h1>
 				<div class="detail">
-					<span class="sell-count">月售{{food.sellCount}}</span>
-					<span class="rating">好评率{{food.rating}}</span>
+					<span class="sell-count">月售{{foodDesc.sellCount}}</span>
+					<span class="rating">好评率{{foodDesc.rating}}</span>
 				</div>
 				<div class="price">
-					<span class="now">￥{{food.price}}</span>
-					<span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+					<span class="now">￥{{foodDesc.price}}</span>
+					<span class="old" v-show="foodDesc.oldPrice">￥{{foodDesc.oldPrice}}</span>
 				</div>
 				<div class="cartcontrol-wrapper">
 					<CartControl :food="food"></CartControl>
@@ -37,7 +37,7 @@ export default {
     };
   },
   props: {
-    food: Object
+    foodDesc: Object
   },
   methods: {
     toggleShow() {

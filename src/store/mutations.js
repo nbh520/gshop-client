@@ -52,6 +52,8 @@ export default {
   }) {
     state.goods = goods
   },
+
+
   [INCREMENT_FOOD_COUNT](state, {
     food
   }) {
@@ -61,6 +63,7 @@ export default {
       food.count++
     }
   },
+
   [DECREMENT_FOOD_COUNT](state, {
     food
   }) {
@@ -68,6 +71,7 @@ export default {
       food.count--
     }
   },
+
   [CLEAR_CART](state) {
     state.cartFoods.forEach(food => {
       //清楚food中的count

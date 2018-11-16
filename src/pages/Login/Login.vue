@@ -130,6 +130,7 @@ export default {
         }
         //密码登录
         result = await reqPwdLogin({ name, pwd, captcha });
+        console.log(result);
       }
       //停止计时
       if (this.computeTime) {
