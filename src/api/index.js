@@ -4,7 +4,9 @@ const BASE_URL = process.env.API_ROOT;
 /**
  *获取当前地址
  */
-export const reqAddress = geohash => ajax(`${BASE_URL}/position/${geohash}`)
+export const reqAddress = geohash => ajax(`${BASE_URL}/position/${geohash}`) //写死
+
+export const reqCurrentAddress = () => ajax()
 /**
  * 获取 msite 页面食品分类列表
  */
