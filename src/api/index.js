@@ -2,10 +2,14 @@ import ajax from './ajax'
 // const BASE_URL = '/api'
 const BASE_URL = process.env.API_ROOT;
 /**
- *获取当前地址
+ * 获取当前地址
+ * 固定数据
  */
-export const reqAddress = geohash => ajax(`${BASE_URL}/position/${geohash}`) //写死
+export const reqAddress = geohash => ajax(`${BASE_URL}/position/${geohash}`)
 
+/** 
+ *  远程获取数据
+ */
 export const reqCurrentAddress = () => ajax()
 /**
  * 获取 msite 页面食品分类列表
