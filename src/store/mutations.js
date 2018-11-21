@@ -1,5 +1,6 @@
 import {
   RECEIVE_ADDRESS,
+  RECEIVE_CURRENT_ADDRESS,
   RECEIVE_CATEGORYS,
   RECEIVE_SHOPS,
   RECEIVE_USER_INFO,
@@ -15,6 +16,11 @@ import {
 import Vue from 'vue'
 export default {
   [RECEIVE_ADDRESS](state, {
+    address
+  }) {
+    state.address = address
+  },
+  [RECEIVE_CURRENT_ADDRESS](state, {
     address
   }) {
     state.address = address

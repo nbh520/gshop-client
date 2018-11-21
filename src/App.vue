@@ -13,8 +13,12 @@ import { reqAddress } from "./api";
 import { mapActions } from "vuex";
 export default {
   async mounted() {
-    this.$store.dispatch("getAddress");
-    this.getUserInfo();
+    return new Promise((resolve, reject) => {
+      this.$store.dispatch("getCurrentAddress").then(() => {
+        this.$store.dispatch("getAddress");
+        this.getUserInfo();
+      });
+    });
   },
   components: {
     FooterGuide

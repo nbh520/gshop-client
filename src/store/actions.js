@@ -1,5 +1,6 @@
 import {
   reqAddress,
+  reqCurrentAddress,
   reqCategorys,
   reqShops,
   reqUserInfo,
@@ -10,6 +11,7 @@ import {
 } from '../api'
 import {
   RECEIVE_ADDRESS,
+  RECEIVE_CURRENT_ADDRESS,
   RECEIVE_CATEGORYS,
   RECEIVE_SHOPS,
   RECEIVE_USER_INFO,
@@ -20,7 +22,7 @@ import {
 } from './mutations-types'
 
 export default {
-  //异步获取地址
+  //根据经纬度获取当前地址
   async getAddress({
     commit,
     state
@@ -33,6 +35,20 @@ export default {
     commit(RECEIVE_ADDRESS, {
       address: result.data
     })
+  },
+
+  //获取当前地理位置
+  async getCurrentAddress({
+    commit,
+    state
+  }) {
+    const result = await reqCurrentAddress();
+    state.latitude = result.latitude
+    state.longitude = result.longitude
+    commit(RECEIVE_CURRENT_ADDRESS, {
+      address: result
+    })
+
   },
 
   //异步获取分类列表

@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <section class="msite">
-    <HeaderTop :title="address.name">
+    <HeaderTop :title="address.name + '市'">
       <span class="header_search" slot="left">
         <router-link to="/search">
         <i class="iconfont icon-sousuo"></i>        
@@ -108,6 +108,9 @@ export default {
   mounted() {
     this.$store.dispatch("getCategorys");
     this.$store.dispatch("getShops");
+    setTimeout(() => {
+      console.log(this.address);
+    }, 2000);
   },
   components: {
     HeaderTop,

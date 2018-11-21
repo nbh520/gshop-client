@@ -7,8 +7,10 @@ const BASE_URL = process.env.API_ROOT;
  */
 export const reqAddress = geohash => ajax(`${BASE_URL}/position/${geohash}`)
 
-
-export const reqCurrentAddress = () => ajax()
+/**
+ *  定位城市
+ */
+export const reqCurrentAddress = () => ajax('https://elm.cangdu.org/v1/cities?type=guess')
 /**
  * 获取 msite 页面食品分类列表
  */
