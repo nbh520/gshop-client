@@ -2,9 +2,9 @@
 <template>
     <div class="cartcontrol">
       <transition name="move">
-        <div class="iconfont icon-remove_circle_outline"></div>
+        <div class="iconfont icon-remove_circle_outline" v-if="food.count" @click.stop="updateFoodCount(false)"></div>
       </transition>
-      <div class="cart-count"></div>
+      <div class="cart-count">{{food.count?food.count:''}}</div>
       <div class="iconfont icon-add_circle" @click.stop="updateFoodCount(food)"></div>
     </div>
 </template>

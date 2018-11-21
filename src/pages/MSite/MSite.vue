@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <section class="msite">
-    <HeaderTop :title="address.name + '市'">
+    <HeaderTop :title="address.name">
       <span class="header_search" slot="left">
         <router-link to="/search">
         <i class="iconfont icon-sousuo"></i>        
@@ -72,6 +72,7 @@ export default {
     categorysArr() {
       //1.先从当前组件中得到所有食品分类的一维数组
       const { categorys } = this;
+      console.log(categorys);
       //2.准备一个空的二维数组--categorysArr
       const arr = [];
       //3.准备一个小数组 -- pages(最大长度为8)
@@ -109,8 +110,8 @@ export default {
     this.$store.dispatch("getCategorys");
     this.$store.dispatch("getShops");
     setTimeout(() => {
-      console.log(this.address);
-    }, 2000);
+      console.log(this.categorys);
+    }, 1000);
   },
   components: {
     HeaderTop,

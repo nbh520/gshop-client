@@ -64,9 +64,7 @@ export default {
   computed: {
     ...mapState(["shops"])
   },
-  mounted() {
-    console.log(this.shops);
-  },
+  mounted() {},
   components: {
     Star
   }

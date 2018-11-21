@@ -21,17 +21,17 @@
 				<div class="shopcart-list" v-if="isShow">
 					<div class="list-header">
 						<h1 class="title"></h1>
-						<span class="empty">清空</span>
+						<span class="empty" @click="clearCart">清空</span>
 					</div>
-					<div class="list-conten">
+					<div class="list-content">
 						<ul>
-							<li class="food">
-								<span class="name"></span>
+							<li class="food" v-for="(food, index) in cartFoods" :key="index">
+								<span class="name">{{food.name}}</span>
 								<div class="price">
-									<span></span>
+									<span>{{food.price}}</span>
 								</div>
 								<div class="cartcontrol-wrapper">
-
+                  <CartControl :food="food"/>
 								</div>
 							</li>
 						</ul>
@@ -39,12 +39,15 @@
 				</div>
 			</transition>
 		</div>
-		<div class="list-mask" v-if="isShow"></div>
+		<div class="list-mask" v-if="isShow"  @click="toggleShow"></div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import { MessageBox } from "mint-ui";
+import CartControl from "../CartControl/CartControl.vue";
+import BScroll from "better-scroll";
 export default {
   data() {
     return {
@@ -66,6 +69,8 @@ export default {
       const { totalPrice } = this;
       const { minPrice } = this.info;
       if (totalPrice === 0) {
+        return `还差￥${minPrice - totalPrice}元起送`;
+      } else if (totalPrice < minPrice) {
         return `还差￥${minPrice - totalPrice}元起送`;
       } else {
         return "结算";
@@ -94,6 +99,24 @@ export default {
       }
       return this.isShow;
     }
+  },
+  methods: {
+    clearCart() {
+      MessageBox.confirm("确定清空购物车吗").then(
+        action => {
+          this.$store.dispatch("clearCart");
+        },
+        () => {}
+      );
+    },
+    toggleShow() {
+      if (this.totalCount > 0) {
+        this.isShow = !this.isShow;
+      }
+    }
+  },
+  components: {
+    CartControl
   }
 };
 </script>
