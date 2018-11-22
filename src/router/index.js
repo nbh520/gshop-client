@@ -6,7 +6,7 @@ import Shop from '../pages/Shop/Shop.vue'
 import ShopGoods from '../pages/Shop/ShopGoods/ShopGoods.vue'
 import ShopInfo from '../pages/Shop/ShopInfo/ShopInfo.vue'
 import ShopRatings from '../pages/Shop/ShopRatings/ShopRatings.vue'
-
+import City from '../pages/City/City.vue'
 //路由懒加载
 const MSite = () => import('../pages/MSite/MSite.vue')
 const Search = () => import('../pages/Search/Search.vue')
@@ -71,6 +71,10 @@ export default new VueRouter({
         path: '',
         redirect: '/shop/goods'
       }]
+    },
+    {
+      path: '/city',
+      component: City
     }
   ]
 })

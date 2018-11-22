@@ -39,7 +39,7 @@
               </section>
               <section class="login_message">
                 <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
-                <img class="get_verification"  alt="captcha" src="http://localhost:4000/captcha"  ref="captcha" @click="getCaptcha">
+                <img class="get_verification"  alt="captcha" src="http://nibohan.xin:4000/captcha"  ref="captcha" @click="getCaptcha">
               </section>
             </section>
           </div>
@@ -164,7 +164,7 @@ export default {
     //获取新的图片验证码
     async getCaptcha() {
       this.$refs.captcha.src =
-        "http://localhost:4000/captcha?time=" + Date.now();
+        "http://nibohan.xin:4000/captcha?time=" + Date.now();
     }
   },
   components: {
