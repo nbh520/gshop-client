@@ -164,7 +164,7 @@ export default {
     //获取新的图片验证码
     async getCaptcha() {
       this.$refs.captcha.src =
-        "http://nibohan.xin:4000/captcha?time=" + Date.now();
+        "http://39.108.182.105.xin:4000/captcha?time=" + Date.now();
     }
   },
   components: {
